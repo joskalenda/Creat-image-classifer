@@ -73,6 +73,7 @@ def Model_function(args,model,optimizer,criterion,trainloader,valloader,epochs,d
             with torch.no_grad():
                 model.eval()
                 val_loss=0;
+                save_accuracy= -5;#save best accuracy
     
 
      
