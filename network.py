@@ -18,3 +18,23 @@ def creat_classifier(args):
 
     else:
         raise Exception('Arch not compatible\n')
+
+    print('creat pretrained classifier network\n')
+
+    for parm in model.parameters():
+        parm.requires_grad=False;
+        
+    # Features = model.classifier[0].in_features
+    Classifier= nn.Sequential(OrderedDict([('dropout1', nn.Dropout(p=0.3)),
+                                            ('fc1', nn.Linear(Feature, args.hidden_units)),
+                                            ('relu', nn.ReLU()),
+                                            ('dropout2', nn.Dropout(p=0.3)),
+                                            ('fc2', nn.Linear(args.hidden_units, output_size)),  
+                                            ('relu2', nn.ReLU()),
+                                            ('output', nn.LogSoftmax(dim = 1)),
+                                        ]))
+    model.classifier= Classifier
+    return model
+    model.class_to_idx = train_dataset.class_to_idx
+    criterion = nn.NLLLoss()
+    optimizer= optim.Adam(model.classifier.parameters(),lr=args.lr)
