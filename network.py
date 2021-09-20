@@ -56,5 +56,27 @@ def Model_function(args,model,optimizer,criterion,trainloader,valloader,epochs,d
       
     model.to(device)
     accuracy = 0
-    model.optim_state_dict = optimizer.stat
+    model.optim_state_dict = optimizer.state_dict()
+
+    for e in range(epochs):
+
+        running_loss=0;
+        for images, labels in trainloader:
+            images, labels = images.to(device), labels.to(device)
+            optimizer.zero_grad();
+            output=model(images)
+            loss=criterion(output,labels)
+            running_loss+=loss.item()
+            loss.backward()
+            optimizer.step()
+        else:
+            with torch.no_grad():
+                model.eval()
+                val_loss=0;
+    
+
+     
+
+
+
 
