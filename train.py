@@ -62,3 +62,4 @@ def Tr_function(args):
     model.epoch = args.epochs
     model.class_to_idx = train_dataset.class_to_idx
 
+    network.saveCheckPoint(model,args)
