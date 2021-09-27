@@ -143,3 +143,16 @@ def saveCheckPoint(model,args):
         Feature = model.classifier.in_features
     else:
         raise Exception('Arch not compatible\n')
+    
+        
+    checkpoint = {
+               'state_dict': model.state_dict(),
+               'epoch': model.epoch,
+#                'batch_size': model.batch_size,
+               'optimizer_state':model.optim_state_dict,
+               'class_to_idx': model.class_to_idx,
+               'output_size': 102,
+               'fearure':Feature,
+               'hidden_units':args.hidden_units,
+                'accuracy':model.accuracy
+             }
