@@ -185,3 +185,19 @@ def loadCheckpoint(checkpointPath):
     model.optimizer_state=checkpoint['optimizer_state']
     print("Loading checkpoint done with sucess\n")
     return model
+
+
+
+
+def Arg_function():
+    parser = argparse.ArgumentParser(description='Flowers Classifcation Trainer')
+    parser.add_argument('--input', type=str, help='path for image to predict')
+    parser.add_argument('--gpu', action='store_true', help='Utilize gpu to train')
+    parser.add_argument('--arch', type=str, default='vgg16', help='architecture [available:densenet121, vgg16]')
+    parser.add_argument('--lr', type=float, default=0.01, help='learning rate')
+    parser.add_argument('--hidden_units', type=int, default=512, help='hidden units for  fc layer')
+    parser.add_argument('--epochs', type=int, default=1, help='number of epochs')
+    parser.add_argument('data_dir', default='flowers', help='dataset directory')
+    parser.add_argument('--save_dir' , type=str, default='./', help='checkpoint directory path')
+    args = parser.parse_args()
+    return args    
