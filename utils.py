@@ -15,3 +15,19 @@ def Imageprocessing(image):
         # Preprocess the image
     img_tensor = preprocess(im)
     return img_tensor.numpy()
+
+
+
+
+
+def ImagePrediction(image_path, model, topks, device,indexClass):
+        img=Imageprocessing(image_path)
+        img = Image.open(image_path)
+        img=torch.FloatTensor([img])
+        model.eval()
+        output=model(img.to(device))
+        probability=torch.exp(output.cpu())
+        top_p,top_c = probability.topk(topks,dim=1)
+#         print(type(idx_to_class))
+        top_class = [indexClass.get(x) for x in top_c.numpy()[0]]
+        return top_p,top_class
