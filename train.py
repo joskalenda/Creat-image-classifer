@@ -46,3 +46,8 @@ def Tr_function(args):
     trainloader = torch.utils.data.DataLoader(train_dataset,batch_size=64,shuffle=True)
     valloader= torch.utils.data.DataLoader(val_dataset,batch_size=32)
     testloader= torch.utils.data.DataLoader(test_dataset,batch_size=32);
+
+    print('Preparing the model...\n')
+    model = network.creat_classifier(args) 
+    print('model ready\n')
+    print('start training...\n')
