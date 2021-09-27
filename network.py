@@ -161,3 +161,10 @@ def saveCheckPoint(model,args):
 
     torch.save(checkpoint,save_dir +'checkpoint.pth')
     print('Model saved successfully!')
+
+
+
+
+       
+def loadCheckpoint(checkpointPath):
+    checkpoint =torch.load(checkpointPath)
