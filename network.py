@@ -112,3 +112,21 @@ def Model_function(args,model,optimizer,criterion,trainloader,valloader,epochs,d
 
 
 
+def evaluate(model,criterion,testloader,device):
+    with torch.no_grad():
+            model.eval()
+            val_loss=0;
+            accuracy=0;
+            for images , labels in loader:
+                images, labels = images.to(device), labels.to(device)
+                output=model(images)
+                loss=def_criterion(output,labels)
+                val_loss+=loss.item()
+                output_Exp=torch.exp(output)
+                top_p,top_c = output_Exp.topk(1,dim=1)
+                equals= top_c ==labels.view(*top_c.shape)
+                accuracy+=torch.mean(equals.type(torch.FloatTensor)).item()
+            print(f"test  loss: {val_loss/len(loader):.3f}.. "
+                  f"test  accuracy: {accuracy/len(loader):.3f}")
+    model.train()
+    
