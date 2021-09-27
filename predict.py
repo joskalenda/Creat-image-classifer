@@ -50,3 +50,9 @@ def main():
     args = parser.parse_args()
     LoadPredict(args)
     print("Successfully completed\n")
+
+
+
+
+if __name__ == "__main__":
+    main()
