@@ -148,7 +148,6 @@ def saveCheckPoint(model,args):
     checkpoint = {
                'state_dict': model.state_dict(),
                'epoch': model.epoch,
-#                'batch_size': model.batch_size,
                'optimizer_state':model.optim_state_dict,
                'class_to_idx': model.class_to_idx,
                'output_size': 102,
@@ -159,3 +158,6 @@ def saveCheckPoint(model,args):
       # Create a folder to save checkpoint if not already existed
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
+
+    torch.save(checkpoint,save_dir +'checkpoint.pth')
+    print('Model saved successfully!')
