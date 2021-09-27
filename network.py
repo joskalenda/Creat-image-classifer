@@ -168,3 +168,12 @@ def saveCheckPoint(model,args):
        
 def loadCheckpoint(checkpointPath):
     checkpoint =torch.load(checkpointPath)
+    model.classifier= nn.Sequential(OrderedDict([
+                              ('dropout1', nn.Dropout(p=0.5)),
+                              ('fc1', nn.Linear(checkpoint['feature'],checkpoint['hidden_units'] )),
+                              ('relu', nn.ReLU()),
+                              ('fc3', nn.Linear(checkpoint['hidden_units'], checkpoint['output_size'])),
+                              ('relu2', nn.ReLU()),
+                              ('dropout3', nn.Dropout(p=0.5)),
+                              ('output', nn.LogSoftmax(dim=1)),
+                              ]))
