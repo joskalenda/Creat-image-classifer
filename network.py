@@ -93,7 +93,20 @@ def Model_function(args,model,optimizer,criterion,trainloader,valloader,epochs,d
                     
                     saveCheckPoint(model,'checkpoint.ph')
     
+                train_lss = running_loss/len(trainloader)
+                val_lss = val_loss/len(valloader)
+                test_lss  =  save_accuracy/len(valloader)
+                print(f"Epoch {e+1}/{epochs}.. ",
+                  "Train loss: {}","Valloss: {}","valac: {}".format(train_lss,val_lss,test_lss))
+                 
+        model.train()
+    return model
+    print("Training done with success\n")
 
+    end_time = time()
+    tot_time = end_time - start_time
+    tot_time = strftime('%H:%M:%S', localtime(tot_time))
+    print("\n** Total Elapsed Training Runtime: ", tot_time)
      
 
 
