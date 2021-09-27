@@ -41,3 +41,8 @@ def Tr_function(args):
     train_dataset =datasets.ImageFolder(train_dir,transform=train_transform) 
     test_dataset =datasets.ImageFolder(test_dir,transform=test_transform) 
     val_dataset =datasets.ImageFolder(valid_dir,transform=val_transform) 
+ 
+     # TODO: Using the image datasets and the trainforms, define the dataloaders
+    trainloader = torch.utils.data.DataLoader(train_dataset,batch_size=64,shuffle=True)
+    valloader= torch.utils.data.DataLoader(val_dataset,batch_size=32)
+    testloader= torch.utils.data.DataLoader(test_dataset,batch_size=32);
