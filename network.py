@@ -129,4 +129,17 @@ def evaluate(model,criterion,testloader,device):
             print(f"test  loss: {val_loss/len(loader):.3f}.. "
                   f"test  accuracy: {accuracy/len(loader):.3f}")
     model.train()
-    
+
+
+
+
+
+def saveCheckPoint(model,args):
+    if(args.arch=='vgg16'):
+        model=models.vgg16(pretrained=True)
+        Feature = model.classifier[0].in_features
+    elif(args.arch == 'densenet121'):
+        model=models.densenet121(pretrained= True)
+        Feature = model.classifier.in_features
+    else:
+        raise Exception('Arch not compatible\n')
