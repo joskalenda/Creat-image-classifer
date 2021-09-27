@@ -156,3 +156,6 @@ def saveCheckPoint(model,args):
                'hidden_units':args.hidden_units,
                 'accuracy':model.accuracy
              }
+      # Create a folder to save checkpoint if not already existed
+    if not os.path.exists(save_dir):
+        os.makedirs(save_dir)
