@@ -34,3 +34,10 @@ def Tr_function(args):
                                         transforms.ToTensor(),
                                         transforms.Normalize([0.485, 0.456, 0.406],[0.229, 0.224, 0.225])
                                        ])
+
+     
+    # TODO: Load the datasets with ImageFolder
+    print('Loading Train data....')
+    train_dataset =datasets.ImageFolder(train_dir,transform=train_transform) 
+    test_dataset =datasets.ImageFolder(test_dir,transform=test_transform) 
+    val_dataset =datasets.ImageFolder(valid_dir,transform=val_transform) 
