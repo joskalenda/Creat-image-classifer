@@ -79,3 +79,8 @@ if __name__ == "__main__":
     parser.add_argument('--input', type=str, help='path for image to predict')
     parser.add_argument('--save_dir' , type=str, default='./', help='checkpoint directory path')
     args = parser.parse_args()
+
+    with open('cat_to_name.json', 'r') as f:
+        cat_to_name = json.load(f)
+    Tr_function(args)
+    print("Process Finished\n")
