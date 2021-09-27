@@ -51,3 +51,7 @@ def Tr_function(args):
     model = network.creat_classifier(args) 
     print('model ready\n')
     print('start training...\n')
+
+    optimizer= optim.Adam(model.classifier.parameters(),lr=args.lr)
+    model.epoch = args.epochs
+    criterion = nn.NLLLoss()
