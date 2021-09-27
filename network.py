@@ -177,3 +177,11 @@ def loadCheckpoint(checkpointPath):
                               ('dropout3', nn.Dropout(p=0.5)),
                               ('output', nn.LogSoftmax(dim=1)),
                               ]))
+    
+                                
+    model.class_to_idx=checkpoint['class_to_idx']
+    model.load_state_dict(checkpoint['state_dict'])
+    model.epoch=checkpoint['epoch']
+    model.optimizer_state=checkpoint['optimizer_state']
+    print("Loading checkpoint done with sucess\n")
+    return model
