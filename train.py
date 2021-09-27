@@ -55,3 +55,10 @@ def Tr_function(args):
     optimizer= optim.Adam(model.classifier.parameters(),lr=args.lr)
     model.epoch = args.epochs
     criterion = nn.NLLLoss()
+
+
+    model = network.Model_function(args,model, optimizer, criterion, trainloader, valloader, args.epochs, args.save_dir)
+    print('training completed\n')
+    model.epoch = args.epochs
+    model.class_to_idx = train_dataset.class_to_idx
+
